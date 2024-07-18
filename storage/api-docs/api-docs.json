@@ -1,0 +1,98 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Consulta de CEP",
+        "description": "API para consultar múltiplos CEPs utilizando o serviço ViaCEP.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/search/local/{ceps}": {
+            "get": {
+                "tags": [
+                    "CEP"
+                ],
+                "summary": "Get details of multiple CEPs",
+                "description": "Returns details of multiple CEPs",
+                "operationId": "getCepDetails",
+                "parameters": [
+                    {
+                        "name": "ceps",
+                        "in": "path",
+                        "description": "List of CEPs separated by commas",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CepDetails"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CepDetails": {
+                "title": "Cep Details",
+                "properties": {
+                    "cep": {
+                        "type": "string"
+                    },
+                    "label": {
+                        "type": "string"
+                    },
+                    "logradouro": {
+                        "type": "string"
+                    },
+                    "complemento": {
+                        "type": "string"
+                    },
+                    "bairro": {
+                        "type": "string"
+                    },
+                    "localidade": {
+                        "type": "string"
+                    },
+                    "uf": {
+                        "type": "string"
+                    },
+                    "ibge": {
+                        "type": "string"
+                    },
+                    "gia": {
+                        "type": "string"
+                    },
+                    "ddd": {
+                        "type": "string"
+                    },
+                    "siafi": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "CEP",
+            "description": "CEP"
+        }
+    ]
+}
